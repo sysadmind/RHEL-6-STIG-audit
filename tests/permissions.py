@@ -1,7 +1,7 @@
 import os
 import stat
 
-from utils import console
+from utils import console, parsing
 
 
 def isgroupreadable(stats):
@@ -14,6 +14,30 @@ def is_group_writable(stats):
 
 def is_world_writable(stats):
     return bool(stats.st_mode & stat.S_IWOTH)
+
+
+def get_owner_permissions_int(stats):
+    permissions = oct(stats.st_mode & stat.S_IRWXU)
+    if permissions == oct(0):
+        return 0
+    else:
+        return int(permissions[1])
+
+
+def get_group_permissions_int(stats):
+    permissions = oct(stats.st_mode & stat.S_IRWXG)
+    if permissions == oct(0):
+        return 0
+    else:
+        return int(permissions[1])
+
+
+def get_world_permissions_int(stats):
+    permissions = oct(stats.st_mode & stat.S_IRWXO)
+    if permissions == oct(0):
+        return 0
+    else:
+        return int(permissions[1])
 
 
 def shadow_file_tests():
@@ -89,17 +113,58 @@ def executable_file_tests():
     # RHEL-06-000047
     # next
     for location in executable_locations:
+
         for dirname, dirnames, filenames in os.walk(location):
             # for subdirname in dirnames:
             #     print os.path.join(dirname, subdirname)
+
             for filename in filenames:
                 file_stats = os.stat(os.path.join(dirname, filename))
+
                 if is_group_writable(file_stats):
                     console.error("System executable file %s is group writable!" % os.path.join(dirname, filename))
                     print oct(stat.S_IMODE(os.stat(os.path.join(dirname, filename)).st_mode))
+
                 if is_world_writable(file_stats):
                     console.error("System executable file %s is world writable!" % os.path.join(dirname, filename))
                     print oct(stat.S_IMODE(os.stat(os.path.join(dirname, filename)).st_mode))
+
+
+def rsyslog_file_tests():
+    # RHEL-06-000133
+    # RHEL-06-000134
+    # RHEL-06-000135
+    rsyslog_config_file = "/etc/rsyslog.conf"
+    rsyslog_config = parsing.parse_rsyslog_config(rsyslog_config_file)
+
+    for k, v in rsyslog_config.iteritems():
+
+        # We want the log files so we get rid of other config
+        if k.startswith("$"):
+            continue
+
+        # emerg.* gets written everywhere
+        if v == "*":
+            continue
+
+        # Files that don't sync after every log are prefixed with "-"
+        if v.startswith("-"):
+            v = v.lstrip("-")
+
+        log_stats = os.stat(v)
+
+        if log_stats.st_uid != 0:
+            console.error("%s is not owned by root!" % v)
+
+        if log_stats.st_gid != 0:
+            console.error("%s is not group owned by root!" % v)
+
+        if (
+            get_owner_permissions_int(log_stats) > 6 or
+            get_group_permissions_int(log_stats) > 0 or
+            get_world_permissions_int(log_stats) > 0
+        ):
+            console.error("Permissions are too open on %s" % v)
 
 
 def run_tests():
@@ -108,3 +173,4 @@ def run_tests():
     passwd_file_tests()
     group_file_tests()
     executable_file_tests()
+    rsyslog_file_tests()
