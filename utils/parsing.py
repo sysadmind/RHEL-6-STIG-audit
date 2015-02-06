@@ -1,6 +1,6 @@
 
 
-def parse_config_file(location, delimiter):
+def parse_config_file(location, delimiter=None):
     with open(location, 'r') as infile:
         file_values = {}
         lines = infile.readlines()
@@ -13,7 +13,7 @@ def parse_config_file(location, delimiter):
             if not line or line.startswith("#"):
                 continue
 
-            # Split lines on '='
+            # Split lines on delimiter.
             k, v = line.split(delimiter, 1)
             k = k.strip()
             v = v.strip()
