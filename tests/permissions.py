@@ -168,6 +168,8 @@ def rsyslog_file_tests():
 
 
 def run_tests():
+    console.heading("File Permissions")
+
     shadow_file_tests()
     gshadow_file_tests()
     passwd_file_tests()

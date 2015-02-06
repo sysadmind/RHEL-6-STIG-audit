@@ -9,7 +9,7 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * Python
 
 ### Todo
- * RHEL-06-000186+
+ * RHEL-06-000246+
 
  * RHEL-06-000008
  * RHEL-06-000009

@@ -5,6 +5,7 @@ from utils import console
 
 
 def run_tests():
+    console.heading("Authentication")
 
     # Check for Rsh files
     # RHEL-06-000019

@@ -13,6 +13,7 @@ mount_points = [
 
 
 def run_tests():
+    console.heading("System Mounts")
 
     for mount_point in mount_points:
 

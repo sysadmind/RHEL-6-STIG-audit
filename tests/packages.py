@@ -6,6 +6,8 @@ from utils import console
 
 
 def run_tests():
+    console.heading("Packages")
+
     yb = yum.YumBase()
     pass
 
