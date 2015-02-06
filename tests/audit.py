@@ -5,7 +5,7 @@ class auditd():
 
     def __init__(self):
         self.auditd_config_file = '/etc/audit/auditd.conf'
-        self.auditd_config = parsing.parse_auditd_config(self.auditd_config_file)
+        self.auditd_config = parsing.parse_config_file(self.auditd_config_file, '=')
         return
 
     def check_admin_space_left_action(self):

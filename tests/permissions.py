@@ -135,7 +135,7 @@ def rsyslog_file_tests():
     # RHEL-06-000134
     # RHEL-06-000135
     rsyslog_config_file = "/etc/rsyslog.conf"
-    rsyslog_config = parsing.parse_rsyslog_config(rsyslog_config_file)
+    rsyslog_config = parsing.parse_config_file(rsyslog_config_file, ' ')
 
     for k, v in rsyslog_config.iteritems():
 
