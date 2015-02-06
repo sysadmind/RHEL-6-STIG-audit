@@ -9,7 +9,7 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * Python
 
 ### Todo
- * RHEL-06-000136+
+ * RHEL-06-000164+
 
  * RHEL-06-000008
  * RHEL-06-000009
@@ -22,8 +22,10 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000069
  * RHEL-06-000070
 
-#### Packages
- * RHEL-06-000071
+#### Auditing
+ * RHEL-06-000145
+ * RHEL-06-000148
+ * RHEL-06-000154
 
 #### File Checking
  * RHEL-06-000073
@@ -40,15 +42,26 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000117
  * RHEL-06-000120
 
+#### Kernel Modules
+ * RHEL-06-000098
+ * RHEL-06-000124
+ * RHEL-06-000125
+ * RHEL-06-000126
+ * RHEL-06-000127
 
-#### Root Login
- * RHEL-06-000027
- * RHEL-06-000028
+#### Logging
+ * RHEL-06-000136
+ * RHEL-06-000137
+ * RHEL-06-000138
 
-#### SELinux
- * RHEL-06-000020
- * RHEL-06-000023
- * RHEL-06-000025
+#### Login
+ * RHEL-06-000061
+ * RHEL-06-000062
+ * RHEL-06-000063
+ * RHEL-06-000064
+
+#### Packages
+ * RHEL-06-000071
 
 #### Passwords
  * RHEL-06-000030
@@ -62,12 +75,6 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000059
  * RHEL-06-000060
 
-#### Login
- * RHEL-06-000061
- * RHEL-06-000062
- * RHEL-06-000063
- * RHEL-06-000064
-
 ####  Permissions
  * RHEL-06-000045
  * RHEL-06-000046
@@ -76,8 +83,16 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000065
  * RHEL-06-000066
  * RHEL-06-000067
-
  * RHEL-06-000133
+
+#### Root Login
+ * RHEL-06-000027
+ * RHEL-06-000028
+
+#### SELinux
+ * RHEL-06-000020
+ * RHEL-06-000023
+ * RHEL-06-000025
 
 #### Sysctl
  * RHEL-06-000078
@@ -98,11 +113,4 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000096
  * RHEL-06-000097
  * RHEL-06-000099
-
-#### Kernel Modules
- * RHEL-06-000098
- * RHEL-06-000124
- * RHEL-06-000125
- * RHEL-06-000126
- * RHEL-06-000127
 
