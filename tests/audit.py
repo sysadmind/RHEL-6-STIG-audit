@@ -11,7 +11,10 @@ class auditd():
         return
 
     def check_value(self, key, value, operator_function):
-        if not operator_function(self.auditd_config[key], value):
+        if (
+            key not in self.auditd_config.keys() or
+            not operator_function(self.auditd_config[key], value)
+        ):
             console.error("Auditd %s is not set to %s!" % (key, value))
 
     def check_spece_left_action(self):
@@ -26,6 +29,14 @@ class auditd():
             console.error("Free space warning not enabled in auditd")
             return None
 
+    def check_suspend_ignore(self, key):
+        if (
+            key not in self.auditd_config.keys() or
+            self.auditd_config[key] == 'SUSPEND' or
+            self.auditd_config[key] == 'IGNORE'
+        ):
+            console.error("Auditd %s improperly set!" % key)
+
 
 def run_tests():
 
@@ -34,4 +45,11 @@ def run_tests():
     audit.check_spece_left_action()
     audit.check_value('max_log_file_action', 'ROTATE', operator.eq)  # RHEL-06-000161
     audit.check_value('max_log_file', '6', operator.eq)  # RHEL-06-000160
-    audit.check_value('num_logs', '5', operator.ge)  # # RHEL-06-000159
+    audit.check_value('num_logs', '5', operator.ge)  # RHEL-06-000159
+    # The following check may need a preset config value instead of '1' because
+    # the value is determined by the organization.
+    audit.check_value('space_left', '1', operator.ge)  # RHEL-06-000311
+    audit.check_value('action_mail_acct', 'root', operator.eq)  # RHEL-06-000313
+
+    audit.check_suspend_ignore('disk_full_action')  # RHEL-06-000510
+    audit.check_suspend_ignore('disk_error_action')  # RHEL-06-000511
