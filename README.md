@@ -9,15 +9,11 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * Python
 
 ### Todo
- * RHEL-06-000303+
+The STIG-IDs that haven't been implemented yet are below. They are broken up into sections based on their purpose/implementation. 
 
+#### General / Unclassified
  * RHEL-06-000008
- * RHEL-06-000009
- * RHEL-06-000011
- * RHEL-06-000016
  * RHEL-06-000017
- * RHEL-06-000018
- * RHEL-06-000029
  * RHEL-06-000068
  * RHEL-06-000069
  * RHEL-06-000070
@@ -30,6 +26,21 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000285
  * RHEL-06-000286
  * RHEL-06-000287
+ * RHEL-06-000308
+ * RHEL-06-000309
+ * RHEL-06-000338
+ * RHEL-06-000339
+ * RHEL-06-000340
+ * RHEL-06-000341
+ * RHEL-06-000348
+ * RHEL-06-000349
+ * RHEL-06-000504
+ * RHEL-06-000505
+ * RHEL-06-000515
+ * RHEL-06-000521
+ * RHEL-06-000524
+ * RHEL-06-000525
+ * RHEL-06-000526
 
 #### Auditing
  * RHEL-06-000145
@@ -54,6 +65,7 @@ The goal is to have an audit script for checking STIG compliance that runs with 
 
 #### File Checking
  * RHEL-06-000073
+ * RHEL-06-000347
 
 #### Firewall
  * RHEL-06-000103
@@ -66,6 +78,16 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000116
  * RHEL-06-000117
  * RHEL-06-000120
+ * RHEL-06-000320
+ * RHEL-06-000523
+
+#### Integrity
+ * RHEL-06-000018
+ * RHEL-06-000303
+ * RHEL-06-000304
+ * RHEL-06-000305
+ * RHEL-06-000306
+ * RHEL-06-000307
 
 #### Kernel Modules
  * RHEL-06-000098
@@ -73,6 +95,8 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000125
  * RHEL-06-000126
  * RHEL-06-000127
+ * RHEL-06-000315
+ * RHEL-06-000503
 
 #### LDAP
  * RHEL-06-000252
@@ -82,8 +106,12 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000136
  * RHEL-06-000137
  * RHEL-06-000138
+ * RHEL-06-000509
 
-#### Login
+#### Login / Users
+ * RHEL-06-000027
+ * RHEL-06-000028
+ * RHEL-06-000029
  * RHEL-06-000061
  * RHEL-06-000062
  * RHEL-06-000063
@@ -94,16 +122,30 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000297
  * RHEL-06-000298
  * RHEL-06-000299
+ * RHEL-06-000319
+ * RHEL-06-000324
+ * RHEL-06-000326
+ * RHEL-06-000334
+ * RHEL-06-000335
+ * RHEL-06-000356
+ * RHEL-06-000357
+ * RHEL-06-000372
+ * RHEL-06-000507
+ * RHEL-06-000508
+ * RHEL-06-000527
 
 #### Mounts
  * RHEL-06-000269
  * RHEL-06-000270
  * RHEL-06-000271
+ * RHEL-06-000528
 
 #### NTP
 * RHEL-06-000248
 
 #### Packages
+ * RHEL-06-000011
+ * RHEL-06-000016
  * RHEL-06-000071
  * RHEL-06-000206
  * RHEL-06-000213
@@ -116,6 +158,12 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000281
  * RHEL-06-000288
  * RHEL-06-000291
+ * RHEL-06-000321
+ * RHEL-06-000514
+ * RHEL-06-000516
+ * RHEL-06-000517
+ * RHEL-06-000518
+ * RHEL-06-000519
 
 #### Passwords
  * RHEL-06-000030
@@ -140,10 +188,17 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000133
  * RHEL-06-000282
     * Note that a stat on all files will be a heavy operation
-
-#### Root Login
- * RHEL-06-000027
- * RHEL-06-000028
+ * RHEL-06-000336
+ * RHEL-06-000337
+ * RHEL-06-000342
+ * RHEL-06-000343
+ * RHEL-06-000344
+ * RHEL-06-000345
+ * RHEL-06-000346
+ * RHEL-06-000383
+ * RHEL-06-000384
+ * RHEL-06-000385
+ * RHEL-06-000522
 
 #### Samba
  * RHEL-06-000272
@@ -155,6 +210,7 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000025
 
 #### Services
+ * RHEL-06-000009
  * RHEL-06-000203
  * RHEL-06-000204
  * RHEL-06-000211
@@ -175,6 +231,7 @@ The goal is to have an audit script for checking STIG compliance that runs with 
  * RHEL-06-000289
  * RHEL-06-000290
  * RHEL-06-000292
+ * RHEL-06-000331
 
 #### Sysctl
  * RHEL-06-000078
