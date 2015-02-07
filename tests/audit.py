@@ -1,4 +1,5 @@
 from utils import console, parsing
+import operator
 
 
 class auditd():
@@ -9,11 +10,9 @@ class auditd():
         console.heading("auditd config")
         return
 
-    def check_admin_space_left_action(self):
-        # RHEL-06-000163
-        if self.auditd_config['admin_space_left_action'].upper() != "SINGLE":
-            console.error("Auditd admin_space_left_action is not set to 'SINGLE'!")
-            return None
+    def check_value(self, key, value, operator_function):
+        if not operator_function(self.auditd_config[key], value):
+            console.error("Auditd %s is not set to %s!" % (key, value))
 
     def check_spece_left_action(self):
         # RHEL-06-000005
@@ -27,31 +26,12 @@ class auditd():
             console.error("Free space warning not enabled in auditd")
             return None
 
-    def check_max_log_file_action(self):
-        # RHEL-06-000161
-        if self.auditd_config['max_log_file_action'].upper() != "ROTATE":
-            console.error("Auditd max_log_file_actoin not set to 'ROTATE'!")
-
-    def check_max_log_file(self):
-        # RHEL-06-000160
-        #  This rule may need to be altered because the STIG only defines this
-        #  must be set large enough to meet the retention period required.
-        if not int(self.auditd_config['max_log_file']) >= 6:
-            console.error("Auditd max_log_file not set to at least 6!")
-
-    def check_num_logs(self):
-        # RHEL-06-000159
-        #  This rule may need to be altered because the STIG only defines this
-        #  must be set large enough to meet the retention period required.
-        if not int(self.auditd_config['num_logs']) >= 5:
-            console.error("Auditd num_logs not set to at least 5!")
-
 
 def run_tests():
 
     audit = auditd()
-    audit.check_admin_space_left_action()
+    audit.check_value('admin_space_left_action', 'SINGLE', operator.eq)  # RHEL-06-000163
     audit.check_spece_left_action()
-    audit.check_max_log_file_action()
-    audit.check_max_log_file()
-    audit.check_num_logs()
+    audit.check_value('max_log_file_action', 'ROTATE', operator.eq)  # RHEL-06-000161
+    audit.check_value('max_log_file', '6', operator.eq)  # RHEL-06-000160
+    audit.check_value('num_logs', '5', operator.ge)  # # RHEL-06-000159
